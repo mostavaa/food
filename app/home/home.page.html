@@ -1,0 +1,54 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title text-center>
+            Home
+        </ion-title> 
+        <ion-buttons slot="start">
+            <ion-menu-button color="secondary" autoHide="false"></ion-menu-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content  class="bg-class"  padding>
+    <form class="myForm" (ngSubmit)="onSubmit()" *ngIf="myForm"  [formGroup]="myForm">
+        <ion-list>
+            <ion-item>
+                <ion-label fixed>Item</ion-label>
+                <ion-select  interface="action-sheet" formControlName="item" >
+                    <ion-select-option *ngFor="let item of items" [value]="item.guid">
+                        <h3>{{item.name}} - {{item.subname}}</h3>
+                        <p>{{item.type}}({{item.price}})</p>
+                    </ion-select-option>
+                </ion-select>
+            </ion-item>
+            <ion-item>
+                <ion-label fixed>Amount</ion-label>
+                <ion-input dir="rtl"  formControlName="amount"  type="number" min="1" ></ion-input>
+                <!--<ion-note *ngIf="f.get('password').error['minlength']"></ion-note>-->
+            </ion-item>
+            <ion-item>
+                <ion-label fixed>Notes</ion-label>
+                <ion-input dir="rtl" formControlName="notes"  type="text"></ion-input>
+            </ion-item>
+            <ion-button [disabled]="!myForm.valid" type="submit" expand="full">Order</ion-button>
+        </ion-list>
+        <ion-list>
+            <ion-item-sliding *ngFor="let item of selectedItems">
+                <ion-button text-left expand="full" color="secondary" type="button">
+                    <ion-label item-start text-left>
+                        <h3>{{item.item.name}} - {{item.item.subname}}</h3>
+                        <p>{{item.item.type}}({{item.item.price}})</p>
+                    </ion-label>
+                    <ion-badge slot="end">{{item.amount}}</ion-badge>
+                </ion-button>
+                <ion-item-options side="end">
+                    <ion-item-option icon-only color="danger" (click)="deleteItem(item.guid)">
+                        <ion-icon name="trash"></ion-icon>
+                    </ion-item-option>
+                </ion-item-options>
+            </ion-item-sliding>
+
+        </ion-list>
+    </form>
+
+</ion-content>

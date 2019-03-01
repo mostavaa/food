@@ -1,0 +1,23 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-menu-button color="secondary" autoHide="false"></ion-menu-button>
+        </ion-buttons>
+        <ion-title text-center>Login</ion-title>
+    </ion-toolbar>
+</ion-header>
+<ion-content  class="bg-class"  padding>
+    <form (ngSubmit)="onSubmit()" *ngIf="myForm" [formGroup]="myForm">
+        <ion-list>
+            <ion-item>
+                <ion-label fixed>User Name</ion-label>
+                <ion-input formControlName="username" type="text"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label fixed>Password</ion-label>
+                <ion-input formControlName="password" type="password"></ion-input>
+            </ion-item>
+            <ion-button [disabled]="!myForm.valid" type="submit" expand="full">Login</ion-button>
+        </ion-list>
+    </form>
+</ion-content>

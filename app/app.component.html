@@ -1,0 +1,30 @@
+<ion-app class="bg-class" >
+    <ion-menu side="start" contentId="first" type="push">
+        <ion-header>
+            <ion-toolbar>
+                <ion-title>Menu</ion-title>
+            </ion-toolbar>
+        </ion-header>
+        <ion-content>
+            <ion-list>
+                <ion-button fill="outline" expand="full" *ngIf="isAuthenticated()" (click)="load('home')" icon-left>
+                    <ion-icon name="book"></ion-icon>
+                    Home
+                </ion-button>
+
+                <ion-button fill="outline" expand="full" *ngIf="!isAuthenticated()" (click)="load('login')" icon-left>
+                    <ion-icon name="log-in"></ion-icon>
+                    Sign In
+                </ion-button>
+                <ion-button fill="outline" expand="full" *ngIf="isAuthenticated()" (click)="logout()" icon-left>
+                    <ion-icon name="log-out"></ion-icon>
+                    Log Out
+                </ion-button>
+            </ion-list>
+        </ion-content>
+    </ion-menu>
+    <div>
+        <ion-router-outlet id="first"></ion-router-outlet>
+
+    </div>
+</ion-app>
